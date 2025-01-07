@@ -32,13 +32,3 @@ def get_arxiv_papers(subject: str, num_papers: int = 10):
 if __name__ == "__main__":
     with open("context/subjects.txt", "r") as f:
         subjects = f.readlines()
-
-    print(subjects)
-
-    papers = get_arxiv_papers("cs.LG", 5)
-    for idx, paper in enumerate(papers):
-        print(f"Paper {idx + 1}:")
-        print(f"Title: {paper['title']}")
-        print(f"Published: {paper['published']}")
-        print(f"Link: {paper['link']}")
-        print(f"Summary: {paper['summary']}\n")
