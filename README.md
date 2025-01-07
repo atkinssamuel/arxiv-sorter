@@ -1,6 +1,6 @@
 # arXiv Sorter
 
-This repository allows you to get a curated feed of research articles according to your research goals. Each morning, it will send you an email with 7 recommendations according to the details you provide in `context/prompt.txt` and the subjects you specify in `context/subjects.txt`.
+This repository allows you to get a curated feed of research articles according to your research goals. Each morning, it will send you an email with ranked paper recommendations according to the details you provide in `context/prompt.txt` and the subjects you specify in `context/subjects.txt`.
 
 ![sample email](images/sample-email.png)
 
