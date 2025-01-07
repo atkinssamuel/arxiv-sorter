@@ -37,3 +37,8 @@ For a list of subject codes, consult the archive taxonomy reference below.
 # Set Prompt
 
 Modify the `context/prompt.txt` file to provide the LLM with context about who you are, what kinds of papers you are interested in, and what sorts of things the model should look for. Look at the current `prompt.txt` content for inspiration.
+
+<hr>
+
+<p><a href="https://www.buymeacoffee.com/atkinssamuel"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="50" width="210" alt="atkinssamuel" /></a></p><br><br>
+
