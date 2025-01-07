@@ -1,25 +1,30 @@
 import feedparser
 
+from typing import List
 
-def get_arxiv_papers(subject: str, num_papers: int = 5):
-    # Define the RSS feed URL for the given subject
-    base_url = "http://export.arxiv.org/rss/"
-    subject_url = base_url + subject
 
-    # Parse the RSS feed
-    feed = feedparser.parse(subject_url)
+class Paper:
+    def __init__(self, entry) -> None:
+        self.title = entry.title
+        self.summary = entry.summary
+        self.published = entry.published
+        self.link = entry.link
 
-    # Extract and display the papers from the feed
-    papers = []
+        self.score = None
 
-    for entry in feed.entries[:num_papers]:  # Limit to `num_papers` papers
-        paper_info = {
-            "title": entry.title,
-            "summary": entry.summary,
-            "published": entry.published,
-            "link": entry.link,
-        }
-        papers.append(paper_info)
+    def __repr__(self):
+        return (
+            f"Paper(title={self.title}, published={self.published}, link={self.link})"
+        )
+
+
+def get_arxiv_papers(subject: str, num_papers: int = 10):
+    feed = feedparser.parse("http://export.arxiv.org/rss/" + subject)
+
+    papers: List[Paper] = []
+
+    for entry in feed.entries[:num_papers]:
+        papers.append(Paper(entry))
 
     return papers
 
