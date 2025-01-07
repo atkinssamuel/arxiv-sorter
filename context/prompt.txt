@@ -1,0 +1,3 @@
+I am a computer science student interested in all things reinforcement learning. 
+I am most interested in software papers and less interested in hardware. Also, please 
+recommend any papers by Mark van Hoeij.
