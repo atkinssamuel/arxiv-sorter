@@ -31,6 +31,8 @@ class Paper:
 
 class PaperGrader:
     def __init__(self):
+        load_dotenv()
+
         with open("context/prompt.txt", "r") as f:
             prompt = f.read()
 
@@ -120,8 +122,6 @@ def get_abstract_email(papers: List[Paper]):
 
 
 if __name__ == "__main__":
-    load_dotenv()
-
     with open("context/subjects.txt", "r") as f:
         subjects = f.readlines()
 
