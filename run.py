@@ -122,10 +122,13 @@ def get_abstract_email(papers: List[Paper]):
 
 
 if __name__ == "__main__":
+    load_dotenv()
+
     creds = credentials(
         scopes=[os.getenv("GOOGLE_SCOPE")],
         client=os.getenv("GOOGLE_CLIENT_ID"),
         secret=os.getenv("GOOGLE_CLIENT_SECRET"),
+        path_to_refresh="refresh.txt",
     )
 
     with open("context/subjects.txt", "r") as f:
