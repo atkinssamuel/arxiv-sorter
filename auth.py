@@ -1,4 +1,9 @@
-from src.gmail import authenticate, gmail_resource, credentials
+import os
+
+from dotenv import load_dotenv
+from google_auth_wrapper import authenticate
 
 if __name__ == "__main__":
-    authenticate()
+    load_dotenv()
+
+    authenticate(scopes=[os.getenv("GOOGLE_SCOPE")])

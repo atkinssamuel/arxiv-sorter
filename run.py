@@ -2,13 +2,13 @@ import feedparser
 import os
 
 from openai import OpenAI
-from openai.types.chat.chat_completion_message_param import ChatCompletionMessageParam
 from typing import List
 from dotenv import load_dotenv
 from datetime import datetime
 from src.email import send_custom_email
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from google_auth_wrapper import credentials
 
 
 class Paper:
@@ -122,6 +122,12 @@ def get_abstract_email(papers: List[Paper]):
 
 
 if __name__ == "__main__":
+    creds = credentials(
+        scopes=[os.getenv("GOOGLE_SCOPE")],
+        client=os.getenv("GOOGLE_CLIENT_ID"),
+        secret=os.getenv("GOOGLE_CLIENT_SECRET"),
+    )
+
     with open("context/subjects.txt", "r") as f:
         subjects = f.readlines()
 
@@ -145,4 +151,4 @@ if __name__ == "__main__":
         print(paper)
 
     message = get_abstract_email(papers)
-    send_custom_email(message)
+    send_custom_email(message, creds)

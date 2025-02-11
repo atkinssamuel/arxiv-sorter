@@ -5,20 +5,8 @@ from typing import Union
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from dotenv import load_dotenv
-
-from src.gmail import gmail_resource
-
-
-def _create_text_message(subject: str, html: str, recipient: str):
-    load_dotenv()
-
-    message = MIMEText(html, "html")
-    message["to"] = recipient
-    message["from"] = os.getenv("FROM_EMAIL")
-    message["subject"] = subject
-
-    return {"raw": base64.urlsafe_b64encode(message.as_bytes()).decode()}
+from googleapiclient.discovery import build
+from typing import Any
 
 
 def _send_message(service, message_object: dict):
@@ -33,13 +21,16 @@ def _send_message(service, message_object: dict):
         return None
 
 
-def send_text_email(subject: str, html: str, recipient: str):
-    service = gmail_resource()
-    message_object = _create_text_message(subject, html, recipient)
-    return _send_message(service, message_object)
+def _gmail_resource(credentials=None):
+    if not credentials:
+        raise ValueError("Credentials not provided.")
+
+    return build("gmail", "v1", credentials=credentials)
 
 
-def send_custom_email(message: Union[MIMEMultipart, MIMEText, MIMEImage]):
-    service = gmail_resource()
+def send_custom_email(
+    message: Union[MIMEMultipart, MIMEText, MIMEImage], credentials: Any
+):
+    service = _gmail_resource(credentials)
     message_object = {"raw": base64.urlsafe_b64encode(message.as_bytes()).decode()}
     return _send_message(service, message_object)

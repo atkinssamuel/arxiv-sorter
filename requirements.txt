@@ -1,6 +1,5 @@
+git+https://github.com/atkinssamuel/google-auth-wrapper.git
 feedparser
 openai
 python-dotenv
-google-api-python-client 
-google-auth-httplib2 
-google-auth-oauthlib
+google-api-python-client
